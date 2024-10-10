@@ -1,11 +1,16 @@
+library(tidyverse)
 
 #1 cleaning
-data1 <- readRDS("MktCapTopCoins.rds")
+data1 <- as.data.frame(readRDS("MktCapTopCoins.rds"))
 head(data1)
 
 
-data2 <- readRDS("Top10_cryptoStablePairs.rds")
+data2 <- as.data.frame(readRDS("Top10_cryptoStablePairs.rds"))
 head(data2)
+
+distinct(data2,market)
+
+
 
 str(data1)
 str(data2)
