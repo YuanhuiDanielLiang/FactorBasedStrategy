@@ -112,6 +112,37 @@ crypo_index <- merge(index_data,benchmark,by = "time") %>%
   select(time,index_return,RF,sprtrn)
 
 head(crypo_index)
+<<<<<<< HEAD
+=======
+
+
+
+
+###3 CDF
+
+library(ggplot2)
+library(tidyr)
+
+sp_cdf <- ecdf(crypo_index$sprtrn)   ##备注：sp_cdf是通过ecdf函数生成的一个函数，接受一个数值向量并返回这些数值在累积分布中的累积概率
+rf_cdf <- ecdf(crypo_index$RF)
+crypto_cdf <- ecdf(crypo_index$index_return)
+
+cdf_data <- data.frame(
+  value = c(crypo_index$sprtrn, crypo_index$RF, crypo_index$index_return),
+  cdf = c(sp_cdf(crypo_index$sprtrn), rf_cdf(crypo_index$RF), crypto_cdf(crypo_index$index_return)),
+  variable = rep(c("S&P500", "RF", "Crypto_index"), each = length(crypo_index$sprtrn))
+  )
+
+# plot
+ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
+  geom_step() +
+  labs(title = "Cumulative Distribution Functions",
+       x = "Return Value",
+       y = "Cumulative Probability") +
+  scale_color_manual(values = c("blue", "darkgreen", "orange")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+>>>>>>> f93b8c1802fe0261e3d1978c9d4bc0b3bdecd1bd
 
 
 
