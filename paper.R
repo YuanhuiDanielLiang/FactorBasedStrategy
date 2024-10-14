@@ -93,7 +93,112 @@ ggplot(index_data, aes(x = time, y = index_value)) +
 
 
 
+##### Benchmark: Riskfree and S&P500
+library(lubridate)
+library(dplyr)
+rf <- read.csv("Rf.CSV")
+sp500 <- read.csv("SP500.csv")
+
+
+rf$time <- ymd(rf$time)  
+sp500$time <- ymd(sp500$time)  
+
+benchmark <- merge(rf, sp500, by = "time") %>%
+  select(time,RF,sprtrn)
+
+
+index_data$time <- ymd(index_data$time)  
+crypo_index <- merge(index_data,benchmark,by = "time") %>%
+  select(time,index_return,RF,sprtrn)
+
+head(crypo_index)
 
 
 
 
+###3 CDF
+
+library(ggplot2)
+library(tidyr)
+
+sp_cdf <- ecdf(crypo_index$sprtrn)   ##备注：sp_cdf是通过ecdf函数生成的一个函数，接受一个数值向量并返回这些数值在累积分布中的累积概率
+rf_cdf <- ecdf(crypo_index$RF)
+crypto_cdf <- ecdf(crypo_index$index_return)
+
+cdf_data <- data.frame(
+  value = c(crypo_index$sprtrn, crypo_index$RF, crypo_index$index_return),
+  cdf = c(sp_cdf(crypo_index$sprtrn), rf_cdf(crypo_index$RF), crypto_cdf(crypo_index$index_return)),
+  variable = rep(c("S&P500", "RF", "Crypto_index"), each = length(crypo_index$sprtrn))
+  )
+
+# plot
+ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
+  geom_step() +
+  labs(title = "Cumulative Distribution Functions",
+       x = "Return Value",
+       y = "Cumulative Probability") +
+  scale_color_manual(values = c("blue", "darkgreen", "orange")) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+
+# Factor 
+library(reshape2)
+library(slider)
+
+price_close <- dcast(data2, time~asset, value.var = "price_close", mean) %>%
+  filter(row_number() <= n()-1)
+
+CapMkt <- dcast(data1, time ~ asset, value.var = "CapMkt", mean)
+CapMkt <- CapMkt[CapMkt$time >= price_close$time[1] & CapMkt$time <= price_close$time[2603],names(price_close)[1:11]]
+rownames(CapMkt) <- NULL 
+
+price_close <- price_close %>%
+  mutate(across(names(price_close)[2:11],
+                list(lag1 = ~lag(.x, 7),
+                     lag2 = ~lag(.x, 14),
+                     lag3 = ~lag(.x, 21),
+                     lag4 = ~lag(.x, 28),
+                     lag8 = ~lag(.x, 56)),
+                .names = "{.col}_{.fn}"))
+
+price_close <- price_close %>%
+  mutate(across(names(price_close)[2:11],
+                list(mom1 = ~ .x -get(paste0(cur_column(), "_lag1")),
+                     mom2 = ~ .x -get(paste0(cur_column(), "_lag2")),
+                     mom3 = ~ .x -get(paste0(cur_column(), "_lag3")),
+                     mom4 = ~ .x -get(paste0(cur_column(), "_lag4")),
+                     mom8 = ~ .x -get(paste0(cur_column(), "_lag8"))),
+                .names = "{.col}_{.fn}"))
+
+price_close <- price_close %>%
+  mutate(across(names(price_close)[2:11],
+                list(std1 = ~slide_dbl(.x, sd, .before = 7, .complete = TRUE),
+                     std2 = ~slide_dbl(.x, sd, .before = 14, .complete = TRUE),
+                     std3 = ~slide_dbl(.x, sd, .before = 21, .complete = TRUE),
+                     std4 = ~slide_dbl(.x, sd, .before = 28, .complete = TRUE),
+                     std8 = ~slide_dbl(.x, sd, .before = 56, .complete = TRUE)),
+                .names = "{.col}_{.fn}"))
+
+price_close <- price_close %>%
+  mutate(across(names(price_close)[2:11],
+                list(rmom1 = ~ get(paste0(cur_column(), "_mom1"))/get(paste0(cur_column(), "_std1")),
+                     rmom2 = ~ get(paste0(cur_column(), "_mom2"))/get(paste0(cur_column(), "_std2")),
+                     rmom3 = ~ get(paste0(cur_column(), "_mom3"))/get(paste0(cur_column(), "_std3")),
+                     rmom4 = ~ get(paste0(cur_column(), "_mom4"))/get(paste0(cur_column(), "_std4")),
+                     rmom8 = ~ get(paste0(cur_column(), "_mom8"))/get(paste0(cur_column(), "_std8"))),
+                .names = "{.col}_{.fn}"))
+
+volume <- dcast(data2, time~asset, value.var = "volume", mean) %>%
+  filter(row_number() <= n()-1)
+
+volume <- volume %>%
+  mutate(across(names(volume)[2:11],
+                list(vol = ~ log(slide_dbl(.x, mean, .before = 7, .complete = TRUE))),
+                .names = "{.col}_{.fn}"))
+
+volume <- volume %>%
+  mutate(across(names(volume)[2:11],
+                list(volprc = ~ get(paste0(cur_column(), "_vol"))*price_close[[cur_column()]],
+                     volscale = ~ get(paste0(cur_column(), "_vol"))*price_close[[cur_column()]]/CapMkt[[cur_column()]]),
+                .names = "{.col}_{.fn}"))
