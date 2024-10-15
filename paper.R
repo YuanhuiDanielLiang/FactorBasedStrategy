@@ -112,8 +112,7 @@ crypo_index <- merge(index_data,benchmark,by = "time") %>%
   select(time,index_return,RF,sprtrn)
 
 head(crypo_index)
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -142,7 +141,7 @@ ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
   scale_color_manual(values = c("blue", "darkgreen", "orange")) +
   theme_minimal() +
   theme(legend.title = element_blank())
->>>>>>> f93b8c1802fe0261e3d1978c9d4bc0b3bdecd1bd
+
 
 
 
@@ -180,8 +179,10 @@ library(slider)
 price_close <- dcast(data2, time~asset, value.var = "price_close", mean) %>%
   filter(row_number() <= n()-1)
 
+
+
 CapMkt <- dcast(data1, time ~ asset, value.var = "CapMkt", mean)
-CapMkt <- CapMkt[CapMkt$time >= price_close$time[1] & CapMkt$time <= price_close$time[2603],names(price_close)[1:11]]
+CapMkt <- CapMkt[CapMkt$time >= price_close$time[1] & CapMkt$time <= price_close$time[2602],names(price_close)[1:11]]
 rownames(CapMkt) <- NULL 
 
 price_close <- price_close %>%
@@ -232,4 +233,35 @@ volume <- volume %>%
   mutate(across(names(volume)[2:11],
                 list(volprc = ~ get(paste0(cur_column(), "_vol"))*price_close[[cur_column()]],
                      volscale = ~ get(paste0(cur_column(), "_vol"))*price_close[[cur_column()]]/CapMkt[[cur_column()]]),
+                .names = "{.col}_{.fn}"))
+
+price_max <- dcast(data2, time~asset, value.var = "price_high", mean) %>%
+  filter(row_number() <= n()-1)
+
+CapMkt <- CapMkt %>%
+  mutate(across(names(CapMkt)[2:11],
+                list(lprc = ~ log(price_close[[cur_column()]]),
+                     maxprc = ~slide_dbl(price_max[[cur_column()]], max, .before = 7, .complete = TRUE)),
+                .names = "{.col}_{.fn}"))
+
+Volatility <- price_close[1:11]
+Volatility <- Volatility %>%
+  mutate(across(names(Volatility)[2:11],
+                list(return = ~ .x/lag(.x,1) - 1),
+                .names = "{.col}_{.fn}"))
+
+library(moments)
+
+Volatility <- Volatility %>%
+  mutate(across(names(Volatility)[12:21],
+                list(retvol = ~ slide_dbl(.x, sd, .before = 7, .complete = TRUE),
+                     retskew = ~ slide_dbl(.x, skewness, .before = 7, .complete = TRUE),
+                     retkurt = ~ slide_dbl(.x, kurtosis, .before = 7, .complete = TRUE),
+                     maxret = ~ slide_dbl(.x, max, .before = 7, .complete = TRUE)),
+                .names = "{.col}_{.fn}"))
+
+Volatility <- Volatility %>%
+  mutate(across(names(Volatility)[2:11],
+                list(stdprcvol = ~ log(slide_dbl(volume[[paste0(cur_column(),"_volprc")]], sd, .before = 7, .complete = TRUE)),
+                     meanabs = ~ slide_dbl(abs(.x)/volume[[paste0(cur_column(),"_volprc")]], mean, .before = 7, .complete = TRUE)),
                 .names = "{.col}_{.fn}"))
