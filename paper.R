@@ -265,3 +265,55 @@ Volatility <- Volatility %>%
                 list(stdprcvol = ~ log(slide_dbl(volume[[paste0(cur_column(),"_volprc")]], sd, .before = 7, .complete = TRUE)),
                      meanabs = ~ slide_dbl(abs(.x)/volume[[paste0(cur_column(),"_volprc")]], mean, .before = 7, .complete = TRUE)),
                 .names = "{.col}_{.fn}"))
+
+library(lubridate)
+
+volume <- volume %>%
+  mutate(week = ceiling_date(time, "week", week_start = 1)) %>%
+  group_by(week) %>%
+  summarize(across(12:41, ~ last(.x, na_rm = TRUE)))
+
+size <- CapMkt %>%
+  mutate(week = ceiling_date(time, "week", week_start = 1)) %>%
+  group_by(week) %>%
+  summarize(across(2:31, ~ last(.x, na_rm = TRUE)))
+
+momentum <- price_close %>%
+  mutate(week = ceiling_date(time, "week", week_start = 1)) %>%
+  group_by(week) %>%
+  summarize(across(62:111, ~ last(.x, na_rm = TRUE)),
+            across(162:211, ~ last(.x, na_rm = TRUE)))
+
+rtns <- Volatility %>%
+  mutate(week = ceiling_date(time, "week", week_start = 1)) %>%
+  group_by(week) %>%
+  summarize(across(12:21, ~ prod((1+.x), na.rm = TRUE)-1))
+
+Volatility <- Volatility %>%
+  mutate(week = ceiling_date(time, "week", week_start = 1)) %>%
+  group_by(week) %>%
+  summarize(across(22:81, ~ last(.x, na_rm = TRUE)))
+
+col_names <- names(volume)
+cols_to_sort <- col_names[grepl("_", col_names) & col_names != "time"]
+sorted_cols <- cols_to_sort[order(sub(".*_", "", cols_to_sort))]
+volume <- volume %>%
+  select(week, all_of(sorted_cols))
+
+col_names <- names(momentum)
+cols_to_sort <- col_names[grepl("_", col_names) & col_names != "time"]
+sorted_cols <- cols_to_sort[order(sub(".*_", "", cols_to_sort))]
+momentum <- momentum %>%
+  select(week, all_of(sorted_cols))
+
+col_names <- names(Volatility)
+cols_to_sort <- col_names[grepl("_", col_names) & col_names != "time"]
+sorted_cols <- cols_to_sort[order(sub(".*_", "", cols_to_sort))]
+Volatility <- Volatility %>%
+  select(week, all_of(sorted_cols))
+
+col_names <- names(size)
+cols_to_sort <- col_names[grepl("_", col_names) & col_names != "time"]
+sorted_cols <- cols_to_sort[order(sub(".*_", "", cols_to_sort))]
+size <- size %>%
+  select(names(size)[1:11], all_of(sorted_cols))
