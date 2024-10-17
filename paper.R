@@ -317,3 +317,68 @@ cols_to_sort <- col_names[grepl("_", col_names) & col_names != "time"]
 sorted_cols <- cols_to_sort[order(sub(".*_", "", cols_to_sort))]
 size <- size %>%
   select(names(size)[1:11], all_of(sorted_cols))
+
+custom_ntile <- function(row, n = 5) {
+  # Remove NaN values
+  valid_values <- row[!is.nan(row)]
+  
+  # If no valid values, return the row as is
+  if (length(valid_values) == 0) {
+    return(rep(NA, length(row)))
+  }
+  
+  # Apply ntile to valid values
+  quantiles <- ceiling(n*(rank(valid_values)-1)/(length(valid_values)-1))
+  quantiles <- replace(quantiles, quantiles==0, 1)
+  
+  # Create an output row with NaNs in the original positions
+  result <- rep(NA, length(row))
+  result[!is.nan(row)] <- quantiles
+  
+  return(result)
+}
+
+n_variables <- floor(ncol(size)/10)
+size[is.na(size)] <- NaN
+for(j in 0:(n_variables-1)){
+  name <- names(size)[(10*j+2):(10*j+11)]
+  size <- size %>%
+    mutate(across(name,~ .x, .names = "{.col}_quantile"))
+  for(k in 1:372){
+    size[k,paste0(name,"_quantile")] <- as.list(custom_ntile(unlist(size[k,name])))
+  }
+}
+
+n_variables <- floor(ncol(momentum)/10)
+momentum[is.na(momentum)] <- NaN
+for(j in 0:(n_variables-1)){
+  name <- names(momentum)[(10*j+2):(10*j+11)]
+  momentum <- momentum %>%
+    mutate(across(name,~ .x, .names = "{.col}_quantile"))
+  for(k in 1:372){
+    momentum[k,paste0(name,"_quantile")] <- as.list(custom_ntile(unlist(momentum[k,name])))
+  }
+}
+
+n_variables <- floor(ncol(volume)/10)
+volume[is.na(volume)] <- NaN
+for(j in 0:(n_variables-1)){
+  name <- names(volume)[(10*j+2):(10*j+11)]
+  volume <- volume %>%
+    mutate(across(name,~ .x, .names = "{.col}_quantile"))
+  for(k in 1:372){
+    volume[k,paste0(name,"_quantile")] <- as.list(custom_ntile(unlist(volume[k,name])))
+  }
+}
+
+n_variables <- floor(ncol(Volatility)/10)
+Volatility[is.na(Volatility)] <- NaN
+for(j in 0:(n_variables-1)){
+  name <- names(Volatility)[(10*j+2):(10*j+11)]
+  Volatility <- Volatility %>%
+    mutate(across(name,~ .x, .names = "{.col}_quantile"))
+  for(k in 1:372){
+    Volatility[k,paste0(name,"_quantile")] <- as.list(custom_ntile(unlist(Volatility[k,name])))
+  }
+}
+
