@@ -1,0 +1,248 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{lmodern}        % https://github.com/rstudio/rticles/issues/343
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+
+\title{A template for Quantitative Finance Research Replication}
+
+\author{
+    First Author
+   \\
+    Financial Engineering \\
+    University of Illinois \\
+   \\
+  \texttt{\href{mailto:youremail@illinois.edu}{\nolinkurl{youremail@illinois.edu}}} \\
+   \And
+    Second Author (optional, continue for third, fourth, etc)
+   \\
+    Financial Engineering \\
+    University of Illinois \\
+   \\
+  \texttt{\href{mailto:youremail@illinois.edu}{\nolinkurl{youremail@illinois.edu}}} \\
+  }
+
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% Pandoc citation processing
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+Enter the text of your abstract here. Consider your précis from the
+summary and add 1-3 sentences about your conclusions. 6-10 sentences.
+\end{abstract}
+
+\keywords{
+    trading strategies
+   \and
+    quantitative analysis
+   \and
+    machine learning
+   \and
+    these are optional and can be removed
+  }
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This is a template for Research Replication projects following the
+process outlined in Peterson (2016). This template uses Rmarkdown (Xie
+2017). The sample bibliography file was generated via \emph{Jabref.}
+(2021) . The additional comments in this template will be inserted as
+comments, and will not be included in the compiled output. Alternately,
+Jupyter Notebooks with Executable Books Community (2020) and
+(\textbf{jupytext?}) can be used, but I feel that RMarkdown (even with
+python code blocks) is easier.
+
+\hypertarget{paper-summary}{%
+\section{Paper Summary}\label{paper-summary}}
+
+Start with a single paragraph in précis form. See Peterson (2016) p.~1-2
+for details. Complete this section with paragraphs describing each major
+point in the paper. The entire summary will be 4-10 paragraphs.
+
+\hypertarget{hypothesis-overview}{%
+\section{Hypothesis Overview}\label{hypothesis-overview}}
+
+Formally detail the paper's key hypotheses. See Peterson (2016) p.~2 for
+details.
+
+\hypertarget{literature-review}{%
+\section{Literature Review}\label{literature-review}}
+
+Write your literature review. See Peterson (2016) p.~2-4 for details.
+This section must include paragraphs at least for the 3-5 key references
+for the paper to be replicated, similar work, implementation references,
+more recent references where available, and any references with attempt
+to refute the hypotheses of the replicated work. A full literature
+review may contain 20-50 references. Not all will be covered in the same
+level of detail. Important references probably warrant an entire
+paragraph, but similar work can probably be covered together in 1-2
+paragraphs for multiple related works.
+
+\hypertarget{replication}{%
+\section{Replication}\label{replication}}
+
+Now we move on to the actual replication. The sections included here are
+all necessary, but the may not be sufficient. Add additional sections
+and sub-sections as required to describe your work and make your
+analytical case.
+
+\hypertarget{data}{%
+\subsection{Data}\label{data}}
+
+Describe the approach that the replication is taking to Data. See
+Peterson (2016) p.~4-5 for details. Describe both the data used in the
+original paper, and the data you are using for replication. For your
+replicated data, include detailed descriptions of obtaining, parsing,
+and cleaning the data to prepare it for use. Describe data quality
+issues.
+
+\hypertarget{replication-of-key-analytical-techniques}{%
+\subsection{Replication of Key Analytical
+Techniques}\label{replication-of-key-analytical-techniques}}
+
+Model the Key Analytical Techniques from the paper to be replicated. See
+Peterson (2016) p.~5-6 for details. This section will vary significantly
+based on the paper being replicated. Describe your process as you work,
+documenting the steps you are taking, referencing any libraries,
+websites, or third party code that you use as part of your replication,
+and the decree to which your replication agrees or disagrees with the
+source material. Be sure to include summary statistics used in the
+original paper, as well as any additional summary statistics that you
+feel are relevant for checking the quality of your replication.
+
+\hypertarget{technique-1}{%
+\subsubsection{Technique 1}\label{technique-1}}
+
+\hypertarget{technique-2}{%
+\subsubsection{Technique 2}\label{technique-2}}
+
+\hypertarget{technique-3}{%
+\subsubsection{Technique 3}\label{technique-3}}
+
+\hypertarget{hypothesis-tests}{%
+\subsection{Hypothesis Tests}\label{hypothesis-tests}}
+
+After replicating the initial work, it is time to evaluate the
+hypotheses of the replicated work. Those hypotheses were identified
+above, before you started replication. Describe, in detail, the
+statistical tests you perform to refute or validate the hypotheses in
+the replicated work. This should go beyond any explicit tests performed
+in the original paper.
+
+\hypertarget{extended-analysis}{%
+\subsection{Extended Analysis}\label{extended-analysis}}
+
+Extend the analysis with more (recent) data or additional asset classes,
+and/or replicate similar or extended techniques and compare them to the
+original paper's methods. See Peterson (2016) p.~6-7 for details.
+
+\hypertarget{overfitting}{%
+\subsection{Overfitting}\label{overfitting}}
+
+Analyze the likelihood that the original paper is overfit. Include data
+considerations, experiment design, model assumptions, parameterization,
+and biases, out of sample results, etc. Assess how changes to these
+affects results, and produce an opinion on whether and how the original
+work is overfit, as well as what might be doable to reduce the degree of
+overfitting, and whether the main results would hold if the level of
+overfitting were reduced.
+
+\hypertarget{future-work}{%
+\section{Future Work}\label{future-work}}
+
+What additional work on this topic should be performed in the future, if
+this project were to be picked up again or continued?
+
+\hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
+
+Summarize the project and describe your conclusions. This sections can
+range from 1-2 paragraphs to 1-2 pages.
+
+\newpage
+
+\begin{figure}
+\centering
+\includegraphics{cc_by_88x31.png}
+\caption{CC-BY}
+\end{figure}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-jupyterbook}{}}%
+Executable Books Community. 2020. \emph{Jupyter Book} (version v0.10).
+Zenodo. \url{https://doi.org/10.5281/zenodo.4539666}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-jabref}{}}%
+\emph{Jabref.} 2021. \url{https://www.jabref.org}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-PetersonReplication}{}}%
+Peterson, Brian G. 2016. {``Research Replication.''}
+\url{https://www.researchgate.net/publication/319298241_Research_Replication}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Peterson2015}{}}%
+---------. 2017. {``Developing \& Backtesting Systematic Trading
+Strategies.''}
+\url{https://www.researchgate.net/publication/319298448_Developing_Backtesting_Systematic_Trading_Strategies}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Rmarkdown}{}}%
+Xie, Yihui. 2017. {``R Markdown --- Dynamic Documents for r.''}
+\url{http://rmarkdown.rstudio.com/}.
+
+\end{CSLReferences}
+
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+
+
+\end{document}

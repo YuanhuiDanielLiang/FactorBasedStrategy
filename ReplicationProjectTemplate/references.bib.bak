@@ -1,0 +1,33 @@
+@TechReport{Peterson2015,
+  author    = {Peterson, Brian G},
+  title     = {Developing \& Backtesting Systematic Trading Strategies},
+  year      = {2017},
+  timestamp = {2019-05-26},
+  url       = {https://www.researchgate.net/publication/319298448_Developing_Backtesting_Systematic_Trading_Strategies},
+}
+
+@TechReport{PetersonReplication,
+  author    = {Peterson, Brian G},
+  title     = {Research Replication},
+  year      = {2016},
+  timestamp = {2019-05-24},
+  url       = {https://www.researchgate.net/publication/319298241_Research_Replication},
+}
+
+@Misc{Rmarkdown,
+  author    = {Yihui Xie},
+  title     = {R Markdown — Dynamic Documents for R},
+  year      = {2017},
+  url       = {http://rmarkdown.rstudio.com/},
+  owner     = {brian},
+  timestamp = {2015.01.13},
+}
+
+@Manual{jabref,
+  title = {jabref.},
+  note  = {R package version 6.0-86},
+  year  = {2021},
+  url   = {https://www.jabref.org},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
