@@ -172,12 +172,153 @@ ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
   theme(legend.title = element_blank())
 
 
-# Factor 
+
+
+
+#################
+##AFSD & ASSD   违规区域计算,设计函数
+#formula 在这里post出来
+
+# 𝜀1 < 5.9%           𝜀2 should lower critical value of 3.2%
+
+#AFSD
+AFSD <- function(X, Y, interval = 0.001) {
+  
+  # 计算 X 和 Y 的经验累积分布函数
+  F_H <- ecdf(X)
+  F_L <- ecdf(Y)
+  
+  # 在 X 和 Y 的联合范围内生成非常密集的点序列
+  s_range <- seq(min(c(X, Y)), max(c(X, Y)), by = interval)
+  
+  # 初始化分子和分母
+  numerator <- 0  # 分子，积分不满足条件的区间
+  denominator <- 0  # 分母，积分绝对差异
+  
+  # 逐点计算积分
+  for (i in 2:length(s_range)) {
+    s <- s_range[i]
+    s_prev <- s_range[i - 1]
+    
+    # CDF 的差异值
+    diff_HL <- F_H(s) - F_L(s)
+    diff_HL_prev <- F_H(s_prev) - F_L(s_prev)
+    
+    # 梯形法计算当前区间的差异积分
+    delta_s <- s - s_prev
+    
+    # 分母：计算绝对差异的积分
+    abs_diff <- (abs(diff_HL) + abs(diff_HL_prev)) / 2 * delta_s
+    denominator <- denominator + abs_diff
+    
+    # 分子：只在不满足条件时计算积分 (F_H(s) > F_L(s))
+    if (diff_HL > 0) {
+      num_diff <- (diff_HL + diff_HL_prev) / 2 * delta_s
+      numerator <- numerator + num_diff
+    }
+  }
+  
+  # 计算比值
+  ratio <- numerator / denominator
+  
+  return(list(
+    numerator = numerator,
+    denominator = denominator,
+    ratio = ratio
+  ))
+}
+
+
+#ASSD
+
+ASSD <- function(X, Y, interval = 0.001) {
+  
+  # 计算 X 和 Y 的经验累积分布函数
+  F_H <- ecdf(X)
+  F_L <- ecdf(Y)
+  
+  # 在 X 和 Y 的联合范围内生成非常密集的点序列
+  s_range <- seq(min(c(X, Y)), max(c(X, Y)), by = interval)
+  
+  # 初始化分子和分母
+  numerator <- 0  # 分子，积分不满足条件的区间
+  denominator <- 0  # 分母，积分绝对差异
+  
+  # 初始化累积积分
+  integral_FX <- 0
+  integral_FY <- 0
+  
+  # 逐点计算积分
+  for (i in 2:length(s_range)) {
+    s <- s_range[i]
+    s_prev <- s_range[i - 1]
+    
+    # CDF 的差异值
+    diff_HL <- F_H(s) - F_L(s)
+    diff_HL_prev <- F_H(s_prev) - F_L(s_prev)
+    
+    # 梯形法计算当前区间的 CDF 积分
+    delta_s <- s - s_prev
+    integral_FX <- integral_FX + (F_H(s) + F_H(s_prev)) / 2 * delta_s
+    integral_FY <- integral_FY + (F_L(s) + F_L(s_prev)) / 2 * delta_s
+    
+    # 分母：计算绝对差异的积分
+    abs_diff <- (abs(integral_FX - integral_FY) + abs(diff_HL_prev)) / 2 * delta_s
+    denominator <- denominator + abs_diff
+    
+    # 分子：只在不满足二阶随机占优时计算积分 (integral_FX > integral_FY)
+    if (integral_FX > integral_FY) {
+      num_diff <- (integral_FX - integral_FY + diff_HL_prev) / 2 * delta_s
+      numerator <- numerator + num_diff
+    }
+  }
+  
+  # 计算比值
+  ratio <- numerator / denominator
+  
+  return(list(
+    numerator = numerator,
+    denominator = denominator,
+    ratio = ratio
+  ))
+}
+
+
+
+
+
+###TEST of function
+AFSD(crypo_index$sprtrn,crypo_index$index_return)
+AFSD(crypo_index$RF,crypo_index$index_return)
+
+ASSD(crypo_index$sprtrn,crypo_index$index_return)
+ASSD(crypo_index$RF,crypo_index$index_return)    #check
+
+
+#for index, not AFSD, but ASSD
+
+
+
+
+
+
+
+###########Portfolio Formation 
+
+#1.因子计算
+#2. portfolio与多空：按照因子大小五等分，5组平均-1组平均日、周收益等于当日当周的组合策略收益，组合策略又有总时间的平均收益和其他统计
+#3. 计算AFSD与ASSD违例，加入benchmark与marketcap index比较
+
+#########选择前几支portfolio，regression analysis with 3 factor model
+
+
+
+# Factor and quantile
 library(reshape2)
 library(slider)
 
 price_close <- dcast(data2, time~asset, value.var = "price_close", mean) %>%
-  filter(row_number() <= n()-1)
+  filter(row_number() <= n()-1)     ###pivot table
 
 
 
@@ -185,7 +326,7 @@ CapMkt <- dcast(data1, time ~ asset, value.var = "CapMkt", mean)
 CapMkt <- CapMkt[CapMkt$time >= price_close$time[1] & CapMkt$time <= price_close$time[2602],names(price_close)[1:11]]
 rownames(CapMkt) <- NULL 
 
-price_close <- price_close %>%
+price_close <- price_close %>%         ###lag
   mutate(across(names(price_close)[2:11],
                 list(lag1 = ~lag(.x, 7),
                      lag2 = ~lag(.x, 14),
@@ -338,6 +479,9 @@ custom_ntile <- function(row, n = 5) {
   return(result)
 }
 
+
+
+###Quantile
 n_variables <- floor(ncol(size)/10)
 size[is.na(size)] <- NaN
 for(j in 0:(n_variables-1)){
@@ -382,3 +526,131 @@ for(j in 0:(n_variables-1)){
   }
 }
 
+
+
+
+
+###Portfolio Building
+#Size
+size_port <- merge(size, rtns, by = "week")
+
+#others
+# Rename 'time' column to 'week' in CapMkt
+names(CapMkt)[names(CapMkt) == "time"] <- "week"
+
+momentum_port<- merge(momentum, rtns, by = "week")
+momentum_port<- merge(momentum_port, CapMkt, by = "week")
+Volatility_port<- merge(Volatility, rtns, by = "week")
+Volatility_port<- merge(Volatility_port, CapMkt, by = "week")
+volume_port <- merge(volume, rtns, by = "week")
+volume_port <- merge(volume_port, CapMkt, by = "week")
+
+
+
+
+
+#first, try equal-weighted
+calculate_portfolio_returns <- function(df, Factor = "") {
+  asset_columns <- grep("_return$", names(df), value = TRUE)
+  
+  # portfolio build
+  portfolio_returns <- rep(0, nrow(df))
+  
+  for (asset in asset_columns) {
+    asset_name <- sub("_return$", "", asset)
+    if (Factor == "") {
+      quantile_column <- paste0(asset_name, "_quantile")
+    } else {
+      quantile_column <- paste0(asset_name, "_", Factor, "_quantile")
+    }
+    # 买入quantile为5的，卖出quantile为1的;特别注意避免NA加数得NA，将NA归0
+    long_positions <- df[[quantile_column]] == 5
+    short_positions <- df[[quantile_column]] == 1
+    long_positions[is.na(long_positions)] <- 0
+    short_positions[is.na(short_positions)] <- 0
+    
+    portfolio_returns <- portfolio_returns + df[[asset]] * long_positions - df[[asset]] * short_positions
+  }
+  
+  return(portfolio_returns)
+}
+
+
+
+mean(calculate_portfolio_returns(size_port))
+mean(calculate_portfolio_returns(size_port, "lprc"))
+mean(calculate_portfolio_returns(size_port,"maxprc"))
+
+
+
+
+#####Value weighted portfolio (in paper)
+
+
+value_weighted_factor_portfolio <- function(df, Factor = "") {
+  asset_columns <- grep("_return$", names(df), value = TRUE)
+  
+  # 初始化投资组合收益
+  portfolio_returns <- rep(0, nrow(df))
+  
+  for (asset in asset_columns) {
+    asset_name <- sub("_return$", "", asset)
+    
+    if (Factor == "") {
+      quantile_column <- paste0(asset_name, "_quantile")
+    } else {
+      quantile_column <- paste0(asset_name, "_", Factor, "_quantile")
+    }
+    
+    # 使用已经存在的市值列
+    market_cap_column <- asset_name
+    
+    if (market_cap_column %in% names(df)) {
+      # 计算权重
+      total_market_cap <- sum(df[[market_cap_column]], na.rm = TRUE)
+      weights <- df[[market_cap_column]] / total_market_cap
+      
+      # 处理NA值
+      long_positions <- (df[[quantile_column]] == 5) * weights
+      short_positions <- (df[[quantile_column]] == 1) * weights
+      
+      long_positions[is.na(long_positions)] <- 0
+      short_positions[is.na(short_positions)] <- 0
+      
+      # 计算投资组合收益
+      portfolio_returns <- portfolio_returns + df[[asset]] * long_positions - df[[asset]] * short_positions
+    } else {
+      warning(paste("Market cap column", market_cap_column, "not found!"))
+    }
+  }
+  
+  return(portfolio_returns)
+}
+
+
+
+
+
+#Portfolio Function
+#size
+mean(value_weighted_factor_portfolio(size_port))
+mean(value_weighted_factor_portfolio(size_port, "lprc"))
+mean(value_weighted_factor_portfolio(size_port,"maxprc"))
+#momentum
+value_weighted_factor_portfolio(momentum_port,"rmom1")
+
+#Volatility
+value_weighted_factor_portfolio(Volatility_port,"meanabs")
+
+#volume
+value_weighted_factor_portfolio(volume_port,"volscale")
+
+
+
+
+#####AFSD ASSD testing
+
+ASSD(crypo_index$sprtrn,value_weighted_factor_portfolio(size_port))
+ASSD(crypo_index$sprtrn,value_weighted_factor_portfolio(momentum_port,"rmom1"))    #check
+
+###0.01672426 and  0.08305148 , effective ASSD!!!!!!!!!!!!!
