@@ -167,14 +167,14 @@ cdf_plot <- function(data1, data2, labels) {
   )
   
   # Plot
-  ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
+  print(ggplot(cdf_data, aes(x = value, y = cdf, color = variable)) +
     geom_step() +
     labs(title = "Cumulative Distribution Functions",
          x = "Return Value",
          y = "Cumulative Probability") +
     scale_color_manual(values = c("blue", "darkgreen")) +
     theme_minimal() +
-    theme(legend.title = element_blank())
+    theme(legend.title = element_blank()))
 }
 
 
@@ -221,6 +221,10 @@ AFSD <- function(X, Y, interval = 0.001) {
   }
   
   ratio <- numerator / denominator
+  
+  if(ratio>0.5){
+    ratio <- 1-ratio
+  }
   
   return(list(
     numerator = numerator,
@@ -270,6 +274,10 @@ ASSD <- function(X, Y, interval = 0.001) {
   }
 
   ratio <- numerator / denominator
+  
+  if(ratio>0.5){
+    ratio <- 1-ratio
+  }
   
   return(list(
     numerator = numerator,
@@ -528,24 +536,25 @@ for(j in 0:(n_variables-1)){
 
 ###5.2 Portfolio Building
 #Size
-size_port <- merge(size, rtns, by = "week")
+size_port <- merge(size, lead(rtns,1), by = "week")
 
 #others
 # Rename 'time' column to 'week' in CapMkt
 names(CapMkt)[names(CapMkt) == "time"] <- "week"
 
-momentum_port<- merge(momentum, rtns, by = "week")
-momentum_port<- merge(momentum_port, CapMkt, by = "week")
-Volatility_port<- merge(Volatility, rtns, by = "week")
-Volatility_port<- merge(Volatility_port, CapMkt, by = "week")
-volume_port <- merge(volume, rtns, by = "week")
-volume_port <- merge(volume_port, CapMkt, by = "week")
+momentum_port<- merge(momentum, lead(rtns,1), by = "week")
+momentum_port<- merge(momentum_port, CapMkt[1:11], by = "week")
+Volatility_port<- merge(Volatility, lead(rtns,1), by = "week")
+Volatility_port<- merge(Volatility_port, CapMkt[1:11], by = "week")
+volume_port <- merge(volume, lead(rtns,1), by = "week")
+volume_port <- merge(volume_port, CapMkt[1:11], by = "week")
 
 
 
 
 
 #first, try equal-weighted
+
 calculate_portfolio_returns <- function(df, Factor = "") {
   asset_columns <- grep("_return$", names(df), value = TRUE)
   
@@ -579,66 +588,75 @@ mean(calculate_portfolio_returns(size_port,"maxprc"))
 
 
 
-
 #####Value weighted portfolio (that's what in paper)
 
 
-value_weighted_factor_portfolio <- function(df, Factor = "") {
-  asset_columns <- grep("_return$", names(df), value = TRUE)
-  
-  portfolio_returns <- rep(0, nrow(df))
-  
-  for (asset in asset_columns) {
-    asset_name <- sub("_return$", "", asset)
-    
-    if (Factor == "") {
-      quantile_column <- paste0(asset_name, "_quantile")
-    } else {
-      quantile_column <- paste0(asset_name, "_", Factor, "_quantile")
-    }
-    market_cap_column <- asset_name
-    
-    if (market_cap_column %in% names(df)) {
-      total_market_cap <- sum(df[[market_cap_column]], na.rm = TRUE)
-      weights <- df[[market_cap_column]] / total_market_cap
-      
-      # deal with NA
-      long_positions <- (df[[quantile_column]] == 5) * weights
-      short_positions <- (df[[quantile_column]] == 1) * weights
-      
-      long_positions[is.na(long_positions)] <- 0
-      short_positions[is.na(short_positions)] <- 0
-      
-      # portfolio return
-      portfolio_returns <- portfolio_returns + df[[asset]] * long_positions - df[[asset]] * short_positions
-    } else {
-      warning(paste("Market cap column", market_cap_column, "not found!"))
-    }
+value_weighted_factor_portfolio <- function(df, Factor = "",Quantile=5,holding_period=1) {
+  if(Factor==""){
+    quantile_factor <- paste0(names(CapMkt)[2:11],"_quantile")
+  } else{
+  quantile_factor <- paste0(names(CapMkt)[2:11],"_",Factor,"_quantile")
   }
+  
+  df1 <- ifelse(df[quantile_factor] == Quantile,1,0)
+  Mkt <- df1*size_port[names(CapMkt)[2:11]]
+  quant_MKt <- rowSums(Mkt, na.rm = TRUE)
+  weights_port <- Mkt/quant_MKt
+  
+  if(holding_period==1){
+  ret_columns <- grep("_return$", names(df), value = TRUE)} else{
+    ret_columns <- grep(paste0("_return_",as.character(holding_period),"$"), names(df), value = TRUE)
+  }
+  rets <- df[ret_columns]
+  portfolio_returns <- rowSums(weights_port*rets,na.rm = TRUE)
   
   return(portfolio_returns)
 }
 
 
-
-
-
 #Portfolio Function
 #size
-mean(value_weighted_factor_portfolio(size_port))
-mean(value_weighted_factor_portfolio(size_port, "lprc"))
-mean(value_weighted_factor_portfolio(size_port,"maxprc"))
+Summary_Size <- data.frame("size"=1:5,"lprc"=1:5,"maxprc"=1:5,row.names = as.character(1:5))
+for(i in 1:5){
+  Summary_Size[i,"size"] <- mean(value_weighted_factor_portfolio(size_port,Quantile = i),na.rm = TRUE)
+  Summary_Size[i,"lprc"] <- mean(value_weighted_factor_portfolio(size_port,"lprc",Quantile = i),na.rm = TRUE)
+  Summary_Size[i,"maxprc"] <- mean(value_weighted_factor_portfolio(size_port,"maxprc",Quantile = i),na.rm = TRUE)
+}
+
+Summary_Size <- as.data.frame(t(Summary_Size))
+Summary_Size["5-1"] <- Summary_Size["5"] - Summary_Size["1"]
 #momentum
-value_weighted_factor_portfolio(momentum_port,"rmom1")
+Summary_momentum <- data.frame("mom1"=1:5,"mom2"=1:5,"mom3"=1:5,"mom4"=1:5,"mom8"=1:5,"rmom1"=1:5,"rmom2"=1:5,"rmom3"=1:5,"rmom4"=1:5,"rmom8"=1:5,row.names = as.character(1:5))
+for(i in 1:5){
+  for(j in 1:10){
+    Summary_momentum[i,j] <- mean(value_weighted_factor_portfolio(momentum_port,names(Summary_momentum)[j],Quantile = i),na.rm = TRUE)
+  }
+}
+
+Summary_momentum <- as.data.frame(t(Summary_momentum))
+Summary_momentum["5-1"] <- Summary_momentum["5"] - Summary_momentum["1"]
 
 #Volatility
-value_weighted_factor_portfolio(Volatility_port,"meanabs")
+Summary_Volatility <- data.frame("return_maxret"=1:5,"meanabs"=1:5,"return_retkurt"=1:5,"return_retskew"=1:5,"return_retvol"=1:5,"stdprcvol"=1:5,row.names = as.character(1:5))
+for(i in 1:5){
+  for(j in 1:length(names(Summary_Volatility))){
+    Summary_Volatility[i,j] <- mean(value_weighted_factor_portfolio(Volatility_port,names(Summary_Volatility)[j],Quantile = i),na.rm = TRUE)
+  }
+}
+
+Summary_Volatility <- as.data.frame(t(Summary_Volatility))
+Summary_Volatility["5-1"] <- Summary_Volatility["5"] - Summary_Volatility["1"]
 
 #volume
-value_weighted_factor_portfolio(volume_port,"volscale")
+Summary_volume <- data.frame("vol"=1:5,"volprc"=1:5,"volscale"=1:5,row.names = as.character(1:5))
+for(i in 1:5){
+  for(j in 1:length(names(Summary_volume))){
+    Summary_volume[i,j] <- mean(value_weighted_factor_portfolio(volume_port,names(Summary_volume)[j],Quantile = i),na.rm = TRUE)
+  }
+}
 
-
-
+Summary_volume <- as.data.frame(t(Summary_volume))
+Summary_volume["5-1"] <- Summary_volume["5"] - Summary_volume["1"]
 
 #####5.3 AFSD ASSD testing and ploting
 
@@ -646,7 +664,7 @@ value_weighted_factor_portfolio(volume_port,"volscale")
 
 
 ##Benchmark weekly
-s_p500_weekly <- read.csv("S&P 500 Weekly.csv")
+s_p500_weekly <- read.csv("S_P_500_Weekly.csv")
 s_p500_weekly$Date <- as.Date(s_p500_weekly$Date, format = "%m/%d/%Y")
 s_p500_weekly$Price <- as.numeric(gsub(",", "", s_p500_weekly$Price))
 s_p500_weekly <- s_p500_weekly %>%
@@ -664,14 +682,191 @@ s_p500_weekly <- s_p500_weekly %>%
 
 
 ## AFSD ASSD testing
-ASSD(s_p500_weekly$log_return,value_weighted_factor_portfolio(size_port))
-ASSD(s_p500_weekly$log_return,value_weighted_factor_portfolio(momentum_port,"rmom1"))    #check
-AFSD(s_p500_weekly$log_return,value_weighted_factor_portfolio(volume_port,"volscale"))
-AFSD(crypo_index$index_return,value_weighted_factor_portfolio(volume_port,"volscale"))
+### Size
+Size_ASD <- data.frame("AFSD_Ratio"=1:length(row.names(Summary_Size)),"ASSD_Ratio"=1:length(row.names(Summary_Size)),row.names = row.names(Summary_Size))
+match_dates <- merge(s_p500_weekly, size_port[1], by="week")
+for(i in 1:length(row.names(Summary_Size))){
+  factors <- row.names(Summary_Size)[i]
+  if(factors=="size"){
+    factors <- ""
+  }
+  long_short_performance <- value_weighted_factor_portfolio(size_port,factors,5) - value_weighted_factor_portfolio(size_port,factors,1)
+  
+  Size_ASD[i,1] <- AFSD(match_dates$log_return,long_short_performance)[3]
+  Size_ASD[i,2] <- ASSD(match_dates$log_return,long_short_performance)[3]
+  cdf_plot(long_short_performance, match_dates$log_return, c(factors,"S&P 500"))
+}
 
+### Momentum
+Momentum_ASD <- data.frame("AFSD_Ratio"=1:length(row.names(Summary_momentum)),"ASSD_Ratio"=1:length(row.names(Summary_momentum)),row.names = row.names(Summary_momentum))
+for(i in 1:length(row.names(Summary_momentum))){
+  factors <- row.names(Summary_momentum)[i]
+  long_short_performance <- value_weighted_factor_portfolio(momentum_port,factors,5) - value_weighted_factor_portfolio(momentum_port,factors,1)
+  Momentum_ASD[i,1] <- AFSD(match_dates$log_return,long_short_performance)[3]
+  Momentum_ASD[i,2] <- ASSD(match_dates$log_return,long_short_performance)[3]
+  cdf_plot(long_short_performance, match_dates$log_return, c(factors,"S&P 500"))
+}
+### Volatility
+Volatility_ASD <- data.frame("AFSD_Ratio"=1:length(row.names(Summary_Volatility)),"ASSD_Ratio"=1:length(row.names(Summary_Volatility)),row.names = row.names(Summary_Volatility))
+for(i in 1:length(row.names(Summary_Volatility))){
+  factors <- row.names(Summary_Volatility)[i]
+  long_short_performance <- value_weighted_factor_portfolio(Volatility_port,factors,5) - value_weighted_factor_portfolio(Volatility_port,factors,1)
+  Volatility_ASD[i,1] <- AFSD(match_dates$log_return,long_short_performance)[3]
+  Volatility_ASD[i,2] <- ASSD(match_dates$log_return,long_short_performance)[3]
+  cdf_plot(long_short_performance, match_dates$log_return, c(factors,"S&P 500"))
+}
+### Volume
+Volume_ASD <- data.frame("AFSD_Ratio"=1:length(row.names(Summary_volume)),"ASSD_Ratio"=1:length(row.names(Summary_volume)),row.names = row.names(Summary_volume))
+for(i in 1:length(row.names(Summary_volume))){
+  factors <- row.names(Summary_volume)[i]
+  long_short_performance <- value_weighted_factor_portfolio(volume_port,factors,5) - value_weighted_factor_portfolio(volume_port,factors,1)
+  Volume_ASD[i,1] <- AFSD(match_dates$log_return,long_short_performance)[3]
+  Volume_ASD[i,2] <- ASSD(match_dates$log_return,long_short_performance)[3]
+  cdf_plot(long_short_performance, match_dates$log_return, c(factors,"S&P 500"))
+}
 
+### For 4 weeks, 13-week, 26-week, 52-week and 78-week
+match_dates <- match_dates %>%
+  mutate(log_return_4 = lead(slide_dbl(log_return, sum, .before = 3, .complete = TRUE),3),
+         log_return_13 = lead(slide_dbl(log_return, sum, .before = 12, .complete = TRUE),12),
+         log_return_26 = lead(slide_dbl(log_return, sum, .before = 25, .complete = TRUE),25),
+         log_return_52 = lead(slide_dbl(log_return, sum, .before = 51, .complete = TRUE),51),
+         log_return_78 = lead(slide_dbl(log_return, sum, .before = 77, .complete = TRUE),77))
 
+momentum_port <- momentum_port %>%
+  mutate(across(names(rtns)[2:11],
+                list("4" = ~ lead(slide_dbl((.x+1), prod, .before = 3, .complete = TRUE)-1,3),
+                     "13" = ~ lead(slide_dbl((.x+1), prod, .before = 12, .complete = TRUE)-1,12),
+                     "26" = ~ lead(slide_dbl((.x+1), prod, .before = 25, .complete = TRUE)-1,25),
+                     "52" = ~ lead(slide_dbl((.x+1), prod, .before = 51, .complete = TRUE)-1,51),
+                     "78" = ~ lead(slide_dbl((.x+1), prod, .before = 77, .complete = TRUE)-1,77)),
+                .names = "{.col}_{.fn}"))
 
+size_port <- size_port %>%
+  mutate(across(names(rtns)[2:11],
+                list("4" = ~ lead(slide_dbl((.x+1), prod, .before = 3, .complete = TRUE)-1,3),
+                     "13" = ~ lead(slide_dbl((.x+1), prod, .before = 12, .complete = TRUE)-1,12),
+                     "26" = ~ lead(slide_dbl((.x+1), prod, .before = 25, .complete = TRUE)-1,25),
+                     "52" = ~ lead(slide_dbl((.x+1), prod, .before = 51, .complete = TRUE)-1,51),
+                     "78" = ~ lead(slide_dbl((.x+1), prod, .before = 77, .complete = TRUE)-1,77)),
+                .names = "{.col}_{.fn}"))
+
+volume_port <- volume_port %>%
+  mutate(across(names(rtns)[2:11],
+                list("4" = ~ lead(slide_dbl((.x+1), prod, .before = 3, .complete = TRUE)-1,3),
+                     "13" = ~ lead(slide_dbl((.x+1), prod, .before = 12, .complete = TRUE)-1,12),
+                     "26" = ~ lead(slide_dbl((.x+1), prod, .before = 25, .complete = TRUE)-1,25),
+                     "52" = ~ lead(slide_dbl((.x+1), prod, .before = 51, .complete = TRUE)-1,51),
+                     "78" = ~ lead(slide_dbl((.x+1), prod, .before = 77, .complete = TRUE)-1,77)),
+                .names = "{.col}_{.fn}"))
+
+Volatility_port <- Volatility_port %>%
+  mutate(across(names(rtns)[2:11],
+                list("4" = ~ lead(slide_dbl((.x+1), prod, .before = 3, .complete = TRUE)-1,3),
+                     "13" = ~ lead(slide_dbl((.x+1), prod, .before = 12, .complete = TRUE)-1,12),
+                     "26" = ~ lead(slide_dbl((.x+1), prod, .before = 25, .complete = TRUE)-1,25),
+                     "52" = ~ lead(slide_dbl((.x+1), prod, .before = 51, .complete = TRUE)-1,51),
+                     "78" = ~ lead(slide_dbl((.x+1), prod, .before = 77, .complete = TRUE)-1,77)),
+                .names = "{.col}_{.fn}"))
+
+Size_ASD[c("AFSD_Ratio_4","ASSD_Ratio_4","AFSD_Ratio_13","ASSD_Ratio_13","AFSD_Ratio_26","ASSD_Ratio_26","AFSD_Ratio_52","ASSD_Ratio_52","AFSD_Ratio_78","ASSD_Ratio_78")] <- NA
+
+Volume_ASD[c("AFSD_Ratio_4","ASSD_Ratio_4","AFSD_Ratio_13","ASSD_Ratio_13","AFSD_Ratio_26","ASSD_Ratio_26","AFSD_Ratio_52","ASSD_Ratio_52","AFSD_Ratio_78","ASSD_Ratio_78")] <- NA
+
+Volatility_ASD[c("AFSD_Ratio_4","ASSD_Ratio_4","AFSD_Ratio_13","ASSD_Ratio_13","AFSD_Ratio_26","ASSD_Ratio_26","AFSD_Ratio_52","ASSD_Ratio_52","AFSD_Ratio_78","ASSD_Ratio_78")] <- NA
+
+Momentum_ASD[c("AFSD_Ratio_4","ASSD_Ratio_4","AFSD_Ratio_13","ASSD_Ratio_13","AFSD_Ratio_26","ASSD_Ratio_26","AFSD_Ratio_52","ASSD_Ratio_52","AFSD_Ratio_78","ASSD_Ratio_78")] <- NA
+
+list_period <- c(4,13,26,52,78)
+
+for(j in 1:5){
+  holding_period <- list_period[j]
+  for(i in 1:length(row.names(Summary_Size))){
+    factors <- row.names(Summary_Size)[i]
+    if(factors=="size"){
+      factors <- ""
+    }
+    long_short_performance <- value_weighted_factor_portfolio(size_port,factors,5,holding_period) - value_weighted_factor_portfolio(size_port,factors,1,holding_period)
+    long_short_performance <- long_short_performance[-c((length(long_short_performance)+2-holding_period):length(long_short_performance))]
+    sp500_rtns <- unlist(drop_na(match_dates[paste0("log_return_",as.character(holding_period))])[1])
+    Size_ASD[i,(2*j+1)] <- AFSD(sp500_rtns,long_short_performance)[3]
+    Size_ASD[i,(2*j+2)] <- ASSD(sp500_rtns,long_short_performance)[3]
+    cdf_plot(long_short_performance, sp500_rtns, c(factors,"S&P 500"))
+  }
+  for(i in 1:length(row.names(Summary_momentum))){
+    factors <- row.names(Summary_momentum)[i]
+    long_short_performance <- value_weighted_factor_portfolio(momentum_port,factors,5,holding_period) - value_weighted_factor_portfolio(momentum_port,factors,1,holding_period)
+    long_short_performance <- long_short_performance[-c((length(long_short_performance)+2-holding_period):length(long_short_performance))]
+    sp500_rtns <- unlist(drop_na(match_dates[paste0("log_return_",as.character(holding_period))])[1])
+    Momentum_ASD[i,(2*j+1)] <- AFSD(sp500_rtns,long_short_performance)[3]
+    Momentum_ASD[i,(2*j+2)] <- ASSD(sp500_rtns,long_short_performance)[3]
+    cdf_plot(long_short_performance, sp500_rtns, c(factors,"S&P 500"))
+  }
+  for(i in 1:length(row.names(Summary_Volatility))){
+    factors <- row.names(Summary_Volatility)[i]
+    long_short_performance <- value_weighted_factor_portfolio(Volatility_port,factors,5,holding_period) - value_weighted_factor_portfolio(Volatility_port,factors,1,holding_period)
+    long_short_performance <- long_short_performance[-c((length(long_short_performance)+2-holding_period):length(long_short_performance))]
+    sp500_rtns <- unlist(drop_na(match_dates[paste0("log_return_",as.character(holding_period))])[1])
+    Volatility_ASD[i,(2*j+1)] <- AFSD(sp500_rtns,long_short_performance)[3]
+    Volatility_ASD[i,(2*j+2)] <- ASSD(sp500_rtns,long_short_performance)[3]
+    cdf_plot(long_short_performance, sp500_rtns, c(factors,"S&P 500"))
+  }
+  for(i in 1:length(row.names(Summary_volume))){
+    factors <- row.names(Summary_volume)[i]
+    long_short_performance <- value_weighted_factor_portfolio(volume_port,factors,5,holding_period) - value_weighted_factor_portfolio(volume_port,factors,1,holding_period)
+    long_short_performance <- long_short_performance[-c((length(long_short_performance)+2-holding_period):length(long_short_performance))]
+    sp500_rtns <- unlist(drop_na(match_dates[paste0("log_return_",as.character(holding_period))])[1])
+    Volume_ASD[i,(2*j+1)] <- AFSD(sp500_rtns,long_short_performance)[3]
+    Volume_ASD[i,(2*j+2)] <- ASSD(sp500_rtns,long_short_performance)[3]
+    cdf_plot(long_short_performance, sp500_rtns, c(factors,"S&P 500"))
+  }
+}
+
+### Names of Dominant Factors
+for(j in 0:5){
+  if(j==0){holding_period <- 1}else{
+  holding_period <- list_period[j]}
+  for(i in 1:length(row.names(Summary_Size))){
+    factors <- row.names(Summary_Size)[i]
+    if(Size_ASD[i,(2*j+1)] <0.059){
+      if(Size_ASD[i,(2*j+2)]){
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
+      } else{
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
+      }
+    }
+  }
+  for(i in 1:length(row.names(Summary_momentum))){
+    factors <- row.names(Summary_momentum)[i]
+    if(Momentum_ASD[i,(2*j+1)] <0.059){
+      if(Momentum_ASD[i,(2*j+2)]){
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
+      } else{
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
+      }
+    }
+  }
+  for(i in 1:length(row.names(Summary_Volatility))){
+    factors <- row.names(Summary_Volatility)[i]
+    if(Volatility_ASD[i,(2*j+1)] <0.059){
+      if(Volatility_ASD[i,(2*j+2)]){
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
+      } else{
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
+      }
+    }
+  }
+  for(i in 1:length(row.names(Summary_volume))){
+    factors <- row.names(Summary_volume)[i]
+    if(Volume_ASD[i,(2*j+1)] <0.059){
+      if(Volume_ASD[i,(2*j+2)]){
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
+      } else{
+        print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
+      }
+    }
+  }
+}
 
 
 ##plot
