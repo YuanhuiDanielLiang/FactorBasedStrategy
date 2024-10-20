@@ -830,7 +830,7 @@ for(j in 0:5){
   for(i in 1:length(row.names(Summary_Size))){
     factors <- row.names(Summary_Size)[i]
     if(Size_ASD[i,(2*j+1)] <0.059){
-      if(Size_ASD[i,(2*j+2)]){
+      if(Size_ASD[i,(2*j+2)]<0.032){
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
       } else{
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
@@ -840,7 +840,7 @@ for(j in 0:5){
   for(i in 1:length(row.names(Summary_momentum))){
     factors <- row.names(Summary_momentum)[i]
     if(Momentum_ASD[i,(2*j+1)] <0.059){
-      if(Momentum_ASD[i,(2*j+2)]){
+      if(Momentum_ASD[i,(2*j+2)]<0.032){
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
       } else{
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
@@ -850,7 +850,7 @@ for(j in 0:5){
   for(i in 1:length(row.names(Summary_Volatility))){
     factors <- row.names(Summary_Volatility)[i]
     if(Volatility_ASD[i,(2*j+1)] <0.059){
-      if(Volatility_ASD[i,(2*j+2)]){
+      if(Volatility_ASD[i,(2*j+2)]<0.032){
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
       } else{
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
@@ -860,7 +860,7 @@ for(j in 0:5){
   for(i in 1:length(row.names(Summary_volume))){
     factors <- row.names(Summary_volume)[i]
     if(Volume_ASD[i,(2*j+1)] <0.059){
-      if(Volume_ASD[i,(2*j+2)]){
+      if(Volume_ASD[i,(2*j+2)]<0.032){
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD and ASSD"))
       } else{
         print(paste0(factors," for a holding period of ", as.character(holding_period)," weeks dominates the AFSD but not ASSD"))
@@ -868,6 +868,450 @@ for(j in 0:5){
     }
   }
 }
+
+## Hypothesis 2 Testing
+
+### rmom1 1 weeks
+long_only_performance <- value_weighted_factor_portfolio(momentum_port,"rmom1",5)
+short_only_performance <- -value_weighted_factor_portfolio(momentum_port,"rmom1",1)
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- match_dates$log_return
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom1: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom1: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom1: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom1: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom1: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom1: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom1: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom1: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom1: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom1: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("rmom1: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("rmom1: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom1: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom1: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom1: long_short not donminate long_only")
+}
+
+### rmom2 1 weeks
+long_only_performance <- value_weighted_factor_portfolio(momentum_port,"rmom2",5)
+short_only_performance <- -value_weighted_factor_portfolio(momentum_port,"rmom2",1)
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- match_dates$log_return
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom2: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom2: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom2: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom2: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom2: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom2: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom2: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom2: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom2: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom2: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("rmom2: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("rmom2: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom2: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom2: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom2: long_short not donminate long_only")
+}
+
+
+### rmom3 1 weeks
+long_only_performance <- value_weighted_factor_portfolio(momentum_port,"rmom3",5)
+short_only_performance <- -value_weighted_factor_portfolio(momentum_port,"rmom3",1)
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- match_dates$log_return
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom3: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom3: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom3: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom3: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom3: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom3: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom3: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom3: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom3: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom3: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("rmom3: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("rmom3: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom3: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom3: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom3: long_short not donminate long_only")
+}
+
+### rmom4 1 weeks
+long_only_performance <- value_weighted_factor_portfolio(momentum_port,"rmom4",5)
+short_only_performance <- -value_weighted_factor_portfolio(momentum_port,"rmom4",1)
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- match_dates$log_return
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom4: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom4: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom4: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom4: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom4: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom4: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom4: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom4: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom4: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom4: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("rmom4: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("rmom4: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom4: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom4: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom4: long_short not donminate long_only")
+}
+
+### rmom8 1 weeks
+long_only_performance <- value_weighted_factor_portfolio(momentum_port,"rmom8",5)
+short_only_performance <- -value_weighted_factor_portfolio(momentum_port,"rmom8",1)
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- match_dates$log_return
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom8: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom8: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom8: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom8: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("rmom8: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("rmom8: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom8: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom8: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom8: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom8: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("rmom8: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("rmom8: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("rmom8: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("rmom8: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("rmom8: long_short not donminate long_only")
+}
+
+### size_52_weeks
+
+long_only_performance <- value_weighted_factor_portfolio(size_port,"",5,52)
+short_only_performance <- -value_weighted_factor_portfolio(size_port,"",1,52)
+
+long_only_performance <- long_only_performance[-c((length(long_only_performance)-50):length(long_only_performance))]
+short_only_performance <- short_only_performance[-c((length(short_only_performance)-50):length(short_only_performance))]
+
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- unlist(drop_na(match_dates["log_return_52"][1]))
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_52_weeks: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("size_52_weeks: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("size_52_weeks: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_52_weeks: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("size_52_weeks: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("size_52_weeks: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_52_weeks: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("size_52_weeks: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("size_52_weeks: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_52_weeks: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("size_52_weeks: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("size_52_weeks: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_52_weeks: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("size_52_weeks: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("size_52_weeks: long_short not donminate long_only")
+}
+
+### size_78_weeks
+
+long_only_performance <- value_weighted_factor_portfolio(size_port,"",5,78)
+short_only_performance <- -value_weighted_factor_portfolio(size_port,"",1,78)
+
+long_only_performance <- long_only_performance[-c((length(long_only_performance)-76):length(long_only_performance))]
+short_only_performance <- short_only_performance[-c((length(short_only_performance)-76):length(short_only_performance))]
+
+long_short_performance <- long_only_performance+short_only_performance
+benchmark <- unlist(drop_na(match_dates["log_return_78"][1]))
+AFSD_stats <- AFSD(benchmark,long_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,long_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_78_weeks: long_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("size_78_weeks: long_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("size_78_weeks: long_only not donminate sp500")
+}
+AFSD_stats <- AFSD(benchmark,short_only_performance)[3]
+ASSD_stats <- ASSD(benchmark,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_78_weeks: short_only donminate sp500 AFSD and ASSD.")
+  } else{
+    print("size_78_weeks: short_only donminate sp500 AFSD but not ASSD.")
+  }
+} else{
+  print("size_78_weeks: short_only not donminate sp500")
+}
+AFSD_stats <- AFSD(long_only_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_78_weeks: short_only donminate long_only AFSD and ASSD.")
+  } else{
+    print("size_78_weeks: short_only donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("size_78_weeks: short_only not donminate long_only")
+}
+AFSD_stats <- AFSD(long_short_performance,short_only_performance)[3]
+ASSD_stats <- ASSD(long_short_performance,short_only_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_78_weeks: short_only donminate long_short AFSD and ASSD.")
+  } else{
+    print("size_78_weeks: short_only donminate long_short AFSD but not ASSD.")
+  }
+} else{
+  print("size_78_weeks: short_only not donminate long_short")
+}
+AFSD_stats <- AFSD(long_only_performance,long_short_performance)[3]
+ASSD_stats <- ASSD(long_only_performance,long_short_performance)[3]
+if(AFSD_stats <0.059){
+  if(ASSD_stats <0.032){
+    print("size_78_weeks: long_short donminate long_only AFSD and ASSD.")
+  } else{
+    print("size_78_weeks: long_short donminate long_only AFSD but not ASSD.")
+  }
+} else{
+  print("size_78_weeks: long_short not donminate long_only")
+}
+
+
+
+
 
 
 ##plot
