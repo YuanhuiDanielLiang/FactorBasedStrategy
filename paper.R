@@ -684,6 +684,7 @@ s_p500_weekly <- s_p500_weekly %>%
 ## AFSD ASSD testing
 ### Size
 Size_ASD <- data.frame("AFSD_Ratio"=1:length(row.names(Summary_Size)),"ASSD_Ratio"=1:length(row.names(Summary_Size)),row.names = row.names(Summary_Size))
+size_port$week <- as.Date(size_port$week, format = "%Y-%m-%d")
 match_dates <- merge(s_p500_weekly, size_port[1], by="week")
 for(i in 1:length(row.names(Summary_Size))){
   factors <- row.names(Summary_Size)[i]
