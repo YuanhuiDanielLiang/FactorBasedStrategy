@@ -1,0 +1,930 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{bali_hedge_2013}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=5b1c6d2f9eec813d903b7af10e294cb4}{%
+           family={Bali},
+           familyi={B\bibinitperiod},
+           given={Turan\bibnamedelima G.},
+           giveni={T\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39512e2c77560c93cf0afaaad4cd4aa3}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Stephen\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6419f52e22de76ebb7c04d2f245900b2}{%
+           family={Demirtas},
+           familyi={D\bibinitperiod},
+           given={K.\bibnamedelimi Ozgur},
+           giveni={K\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{fullhash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{fullhashraw}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{bibnamehash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{authorbibnamehash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{authornamehash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{authorfullhash}{a6f7ae478f22f39d031ca4b076fceacf}
+      \strng{authorfullhashraw}{a6f7ae478f22f39d031ca4b076fceacf}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Hedge funds' extensive use of derivatives, short selling, and leverage and their dynamic trading strategies create significant nonnormalities in their return distributions. Hence, the traditional performance measures fail to provide an accurate characterization of the relative strength of hedge fund portfolios. This paper uses the utility-based nonparametric and parametric performance measures to determine which hedge fund strategies outperform the U.S. equity and/or bond markets. The results from the realized and simulated return distributions indicate that the long/short equity hedge and emerging markets hedge fund strategies outperform the U.S. equity market, and the long/short equity hedge, multistrategy, managed futures, and global macro hedge fund strategies dominate the U.S. Treasury market. This paper was accepted by Wei Jiang, finance.}
+      \field{issn}{0025-1909, 1526-5501}
+      \field{journaltitle}{Management Science}
+      \field{month}{8}
+      \field{number}{8}
+      \field{title}{Do {Hedge} {Funds} {Outperform} {Stocks} and {Bonds}?}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{59}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{1887\bibrangedash 1903}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1287/mnsc.1120.1689
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\Y2Y73M23\\Bali 等 - 2013 - Do Hedge Funds Outperform Stocks and Bonds.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://pubsonline.informs.org/doi/10.1287/mnsc.1120.1689
+      \endverb
+      \verb{url}
+      \verb https://pubsonline.informs.org/doi/10.1287/mnsc.1120.1689
+      \endverb
+    \endentry
+    \entry{barroso_momentum_2015}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a2645cc0260100b5e3fbfd852e4432a1}{%
+           family={Barroso},
+           familyi={B\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f453cf806ab92ceaec8a50dc7e02fdcc}{%
+           family={Santa-Clara},
+           familyi={S\bibinithyphendelim C\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{fullhash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{fullhashraw}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{bibnamehash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{authorbibnamehash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{authornamehash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{authorfullhash}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \strng{authorfullhashraw}{1c0dd0b57488ca5fdc71c392ebcc9bb4}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Compared with the market, value, or size factors, momentum has offered investors the highest Sharpe ratio. However, momentum has also had the worst crashes, making the strategy unappealing to investors who dislike negative skewness and kurtosis. We find that the risk of momentum is highly variable over time and predictable. Managing this risk virtually eliminates crashes and nearly doubles the Sharpe ratio of the momentum strategy. Risk-managed momentum is a much greater puzzle than the original version.}
+      \field{issn}{0304405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{month}{4}
+      \field{number}{1}
+      \field{title}{Momentum has its moments}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{116}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{111\bibrangedash 120}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/j.jfineco.2014.11.010
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\U7RKBFTN\\Barroso和Santa-Clara - 2015 - Momentum has its moments.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X14002566
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X14002566
+      \endverb
+    \endentry
+    \entry{blitz_when_2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=65eb6a59bede3d3f78e6da22839fb0fd}{%
+           family={Blitz},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=689ea6516de4588950246f99206c6755}{%
+           family={Baltussen},
+           familyi={B\bibinitperiod},
+           given={Guido},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cf67fd13b9365af689df136dc17d2bc0}{%
+           family={Van\bibnamedelima Vliet},
+           familyi={V\bibinitperiod\bibinitdelim V\bibinitperiod},
+           given={Pim},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d7b647958f18544238ea053bc9d48503}
+      \strng{fullhash}{d7b647958f18544238ea053bc9d48503}
+      \strng{fullhashraw}{d7b647958f18544238ea053bc9d48503}
+      \strng{bibnamehash}{d7b647958f18544238ea053bc9d48503}
+      \strng{authorbibnamehash}{d7b647958f18544238ea053bc9d48503}
+      \strng{authornamehash}{d7b647958f18544238ea053bc9d48503}
+      \strng{authorfullhash}{d7b647958f18544238ea053bc9d48503}
+      \strng{authorfullhashraw}{d7b647958f18544238ea053bc9d48503}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0015-198X, 1938-3312}
+      \field{journaltitle}{Financial Analysts Journal}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{When {Equity} {Factors} {Drop} {Their} {Shorts}}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{76}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{73\bibrangedash 99}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1080/0015198X.2020.1779560
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\4N8E6M4A\\Blitz 等 - 2020 - When Equity Factors Drop Their Shorts.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.tandfonline.com/doi/full/10.1080/0015198X.2020.1779560
+      \endverb
+      \verb{url}
+      \verb https://www.tandfonline.com/doi/full/10.1080/0015198X.2020.1779560
+      \endverb
+    \endentry
+    \entry{carhart_persistence_1997}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8a76f68a24fc2415999589b4429d26d1}{%
+           family={Carhart},
+           familyi={C\bibinitperiod},
+           given={Mark\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{fullhash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{fullhashraw}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{bibnamehash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{authorbibnamehash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{authornamehash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{authorfullhash}{8a76f68a24fc2415999589b4429d26d1}
+      \strng{authorfullhashraw}{8a76f68a24fc2415999589b4429d26d1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Using a sample free of survivor bias, I demonstrate that common factors in stock returns and investment expenses almost completely explain persistence in equity mutual funds' mean and risk-adjusted returns. Hendricks, Patel and Zeckhauser's (1993) "hot hands" result is mostly driven by the one-year momentum effect of Jegadeesh and Titman (1993), but individual funds do not earn higher returns from following the momentum strategy in stocks. The only significant persistence not explained is concentrated in strong underperformanceby the worst-return mutual funds. The results do not support the existence of skilled or informed mutual fund portfoliomanagers.}
+      \field{issn}{0022-1082, 1540-6261}
+      \field{journaltitle}{The Journal of Finance}
+      \field{month}{3}
+      \field{number}{1}
+      \field{title}{On {Persistence} in {Mutual} {Fund} {Performance}}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{52}
+      \field{year}{1997}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{57\bibrangedash 82}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1111/j.1540-6261.1997.tb03808.x
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\4G5GW2JT\\Carhart - 1997 - On Persistence in Mutual Fund Performance.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.1997.tb03808.x
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.1997.tb03808.x
+      \endverb
+    \endentry
+    \entry{daniel_momentum_2016}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=2d0948b394f537d9bfcd6053690aabdd}{%
+           family={Daniel},
+           familyi={D\bibinitperiod},
+           given={Kent},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5ea389c5c00164cdcb5d8e3ba0cb909}{%
+           family={Moskowitz},
+           familyi={M\bibinitperiod},
+           given={Tobias\bibnamedelima J.},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{fullhash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{fullhashraw}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{bibnamehash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{authorbibnamehash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{authornamehash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{authorfullhash}{53513bfa1a7b0d8073f80580e6b41c81}
+      \strng{authorfullhashraw}{53513bfa1a7b0d8073f80580e6b41c81}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Despite their strong positive average returns across numerous asset classes, momentum strategies can experience infrequent and persistent strings of negative returns. These momentum crashes are partly forecastable. They occur in panic states, following market declines and when market volatility is high, and are contemporaneous with market rebounds. The low ex ante expected returns in panic states are consistent with a conditionally high premium attached to the option like payoffs of past losers. An implementable dynamic momentum strategy based on forecasts of momentum’s mean and variance approximately doubles the alpha and Sharpe ratio of a static momentum strategy and is not explained by other factors. These results are robust across multiple time periods, international equity markets, and other asset classes.}
+      \field{issn}{0304405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{month}{11}
+      \field{number}{2}
+      \field{title}{Momentum crashes}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{122}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{221\bibrangedash 247}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1016/j.jfineco.2015.12.002
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\YTQ25V5J\\Daniel和Moskowitz - 2016 - Momentum crashes.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X16301490
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X16301490
+      \endverb
+    \endentry
+    \entry{fama_common_1993}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cf1dad75742cba1f00261a0ee70e7ba2}{%
+           family={Fama},
+           familyi={F\bibinitperiod},
+           given={Eugene\bibnamedelima F.},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4ca55f4db61ae3245d066a218dca72c8}{%
+           family={French},
+           familyi={F\bibinitperiod},
+           given={Kenneth\bibnamedelima R.},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{fullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{fullhashraw}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{bibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorbibnamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authornamehash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorfullhash}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \strng{authorfullhashraw}{ac5c181ffbfa45c593cd5483bcb59bd3}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0304405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{month}{2}
+      \field{number}{1}
+      \field{title}{Common risk factors in the returns on stocks and bonds}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{33}
+      \field{year}{1993}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{3\bibrangedash 56}
+      \range{pages}{54}
+      \verb{doi}
+      \verb 10.1016/0304-405X(93)90023-5
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\N997VRMU\\Fama和French - 1993 - Common risk factors in the returns on stocks and bonds.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0304405X93900235
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0304405X93900235
+      \endverb
+    \endentry
+    \entry{frazzini_betting_2014}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=73354ab02dec1c6015d339a86aaf872c}{%
+           family={Frazzini},
+           familyi={F\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=07123ce41f03a63251aed38e35aa6029}{%
+           family={Pedersen},
+           familyi={P\bibinitperiod},
+           given={Lasse\bibnamedelima Heje},
+           giveni={L\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{fullhash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{fullhashraw}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{bibnamehash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{authorbibnamehash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{authornamehash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{authorfullhash}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \strng{authorfullhashraw}{4086e99c0a14cc8bd9c8a07f11f70ed0}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present a model with leverage and margin constraints that vary across investors and time. We find evidence consistent with each of the model's five central predictions: (1) Because constrained investors bid up high-beta assets, high beta is associated with low alpha, as we find empirically for US equities, 20 international equity markets, Treasury bonds, corporate bonds, and futures. (2) A betting against beta (BAB) factor, which is long leveraged low-beta assets and short high-beta assets, produces significant positive riskadjusted returns. (3) When funding constraints tighten, the return of the BAB factor is low. (4) Increased funding liquidity risk compresses betas toward one. (5) More constrained investors hold riskier assets.}
+      \field{issn}{0304405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Betting against beta}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{111}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{1\bibrangedash 25}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1016/j.jfineco.2013.10.005
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\4VSWUPRG\\Frazzini和Pedersen - 2014 - Betting against beta.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X13002675
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X13002675
+      \endverb
+    \endentry
+    \entry{han_cryptocurrency_2021}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=e04e159385c08a5c91f2c32657d29363}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={Weihao},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9ebf6b9486fce027e29836dd0bb0364b}{%
+           family={Newton},
+           familyi={N\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f1d5bf1a33fd1d744ce47d00227662ad}{%
+           family={Platanakis},
+           familyi={P\bibinitperiod},
+           given={Emmanouil},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9d34ee846a261a8424af41f130e843b4}{%
+           family={Sutcliffe},
+           familyi={S\bibinitperiod},
+           given={Charles\bibnamedelima M.},
+           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9d7b0514577143c20597ba90ab27764f}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Xiaoxia},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{4e1247713e9537973ba8af95cad77960}
+      \strng{fullhash}{735c2cf7650bcf8e6ca539ededf73a26}
+      \strng{fullhashraw}{735c2cf7650bcf8e6ca539ededf73a26}
+      \strng{bibnamehash}{4e1247713e9537973ba8af95cad77960}
+      \strng{authorbibnamehash}{4e1247713e9537973ba8af95cad77960}
+      \strng{authornamehash}{4e1247713e9537973ba8af95cad77960}
+      \strng{authorfullhash}{735c2cf7650bcf8e6ca539ededf73a26}
+      \strng{authorfullhashraw}{735c2cf7650bcf8e6ca539ededf73a26}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We employ a non-parametric technique, almost stochastic dominance, and find that portfolios of cryptocurrencies based on nine factors dominate the S\&P500, US 10-year T-bonds, US Tbills and a cryptocurrency index over longer investment horizons. After decomposing those nine long-short factor portfolios, we notice that their dominance relative to above four benchmarks and equity portfolios based on size, momentum and book-to-market, is mainly attributable to their long legs. A three-factor cryptocurrency model (market, size, and momentum) has insignificant alphas for five of the dominant cryptocurrency portfolios, indicating that their dominance is due to a risk premium. We then add the combinations of four mispricing factors and cryptocurrency fundamental factors to the three-factor model. The alphas of the other four dominant cryptocurrency portfolios remain significant, indicating that their dominance is due to mispricing.}
+      \field{issn}{1556-5068}
+      \field{journaltitle}{SSRN Electronic Journal}
+      \field{shorttitle}{Cryptocurrency {Factor} {Portfolios}}
+      \field{title}{Cryptocurrency {Factor} {Portfolios}: {Performance}, {Decomposition} and {Pricing} {Models}}
+      \field{urlday}{31}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.2139/ssrn.3857315
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\DanYu\\Zotero\\storage\\EI6ZQ6UJ\\Han et al. - 2021 - Cryptocurrency Factor Portfolios Performance, Decomposition and Pricing Models.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ssrn.com/abstract=3857315
+      \endverb
+      \verb{url}
+      \verb https://www.ssrn.com/abstract=3857315
+      \endverb
+    \endentry
+    \entry{israel_role_2013}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=15ca97482ba9e79e28c9a260d10b5e2a}{%
+           family={Israel},
+           familyi={I\bibinitperiod},
+           given={Ronen},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5ea389c5c00164cdcb5d8e3ba0cb909}{%
+           family={Moskowitz},
+           familyi={M\bibinitperiod},
+           given={Tobias\bibnamedelima J.},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{fullhash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{fullhashraw}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{bibnamehash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{authorbibnamehash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{authornamehash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{authorfullhash}{5143f5ae30b8adb4525c98168cb8a547}
+      \strng{authorfullhashraw}{5143f5ae30b8adb4525c98168cb8a547}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We examine the role of shorting, ﬁrm size, and time on the proﬁtability of size, value, and momentum strategies. We ﬁnd that long positions make up almost all of size, 60\% of value, and half of momentum proﬁts. Shorting becomes less important for momentum and more important for value as ﬁrm size decreases. The value premium decreases with ﬁrm size and is weak among the largest stocks. Momentum proﬁts, however, exhibit no reliable relation with size. These effects are robust over 86 years of US equity data and almost 40 years of data across four international equity markets and ﬁve asset classes. Variation over time and across markets of these effects is consistent with random chance. We ﬁnd little evidence that size, value, and momentum returns are signiﬁcantly affected by changes in trading costs or institutional and hedge fund ownership over time.}
+      \field{issn}{0304405X}
+      \field{journaltitle}{Journal of Financial Economics}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{The role of shorting, firm size, and time on market anomalies}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{108}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{275\bibrangedash 301}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1016/j.jfineco.2012.11.005
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\BCEVKCKV\\Israel和Moskowitz - 2013 - The role of shorting, firm size, and time on market anomalies.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X12002401
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0304405X12002401
+      \endverb
+    \endentry
+    \entry{li_energy_2019}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=44461e6c390284d7f83f8fd14b288311}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jingming},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d2411a74aa2c0e88f1c888575479957d}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Nianping},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=af2b470a8cf86bdb778bfb280f5212bf}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Jinqing},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e8c79934f85647361063a13de41a47e3}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Haijiao},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=762ec30607109c63a7dcefacd7b8d05e}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Zhibin},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{2a59ef7aa55dfae54eebb3402419a56d}
+      \strng{fullhash}{99a59444c8c61d88af3059986180657c}
+      \strng{fullhashraw}{99a59444c8c61d88af3059986180657c}
+      \strng{bibnamehash}{2a59ef7aa55dfae54eebb3402419a56d}
+      \strng{authorbibnamehash}{2a59ef7aa55dfae54eebb3402419a56d}
+      \strng{authornamehash}{2a59ef7aa55dfae54eebb3402419a56d}
+      \strng{authorfullhash}{99a59444c8c61d88af3059986180657c}
+      \strng{authorfullhashraw}{99a59444c8c61d88af3059986180657c}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Cryptocurrency is a relatively new combination of cryptology and currency in ﬁnancial areas and is increasingly frequently used worldwide. Blockchain applications are expected to reshape the renewable energy market. However, there is a lack of studies covering the power usage of digital currencies. Therefore, this study ran experiments on mining efﬁciency of nine kinds of cryptocurrencies and ten algorithms. A comparison of statistical analysis of data in a benchmark and experiment results of Monero mining was conducted. Thereafter, this study provided an estimation of global electricity consumption of the Monero mining activity. The results indicated that the hashing algorithm mainly determines the mining efﬁciency. Data analysis and experiments and estimated Monero mining electricity consumption in the world and its carbon emission in China as a case study. In 2018, Monero mining may consume 645.62 GWh of electricity in the world after its hard fork. The Monero mining in China may consume 30.34 GWh and contribute a carbon emission of 19.12e19.42 thousand tons from April to December in 2018. Although cryptocurrency mining and blockchain technology are promising, their inﬂuence on energy conversation and sustainable development should be further studied.}
+      \field{issn}{03605442}
+      \field{journaltitle}{Energy}
+      \field{month}{2}
+      \field{shorttitle}{Energy consumption of cryptocurrency mining}
+      \field{title}{Energy consumption of cryptocurrency mining: {A} study of electricity consumption in mining cryptocurrencies}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{168}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{160\bibrangedash 168}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/j.energy.2018.11.046
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\94WXAJ3S\\Li 等 - 2019 - Energy consumption of cryptocurrency mining A study of electricity consumption in mining cryptocurr.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0360544218322503
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0360544218322503
+      \endverb
+    \endentry
+    \entry{liu_risks_2021}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d46adf09de85159f9c000335d863fe4a}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yukun},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4d2683c18d6df763e9f2fa0c05f7f47c}{%
+           family={Tsyvinski},
+           familyi={T\bibinitperiod},
+           given={Aleh},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=3e78dec9928a53006f52c6f1275da16e}{%
+           family={Goldstein},
+           familyi={G\bibinitperiod},
+           given={Itay},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{fullhash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{fullhashraw}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{bibnamehash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{authorbibnamehash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{authornamehash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{authorfullhash}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{authorfullhashraw}{4f26f9303a3c384f0289e2c71fa097d2}
+      \strng{editorbibnamehash}{3e78dec9928a53006f52c6f1275da16e}
+      \strng{editornamehash}{3e78dec9928a53006f52c6f1275da16e}
+      \strng{editorfullhash}{3e78dec9928a53006f52c6f1275da16e}
+      \strng{editorfullhashraw}{3e78dec9928a53006f52c6f1275da16e}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Abstract We establish that cryptocurrency returns are driven and can be predicted by factors that are specific to cryptocurrency markets. Cryptocurrency returns are exposed to cryptocurrency network factors but not cryptocurrency production factors. We construct the network factors to capture the user adoption of cryptocurrencies and the production factors to proxy for the costs of cryptocurrency production. Moreover, there is a strong time-series momentum effect, and proxies for investor attention strongly forecast future cryptocurrency returns.}
+      \field{issn}{0893-9454, 1465-7368}
+      \field{journaltitle}{The Review of Financial Studies}
+      \field{month}{5}
+      \field{number}{6}
+      \field{title}{Risks and {Returns} of {Cryptocurrency}}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{34}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{2689\bibrangedash 2727}
+      \range{pages}{39}
+      \verb{doi}
+      \verb 10.1093/rfs/hhaa113
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\759FDXAY\\Liu和Tsyvinski - 2021 - Risks and Returns of Cryptocurrency.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://academic.oup.com/rfs/article/34/6/2689/5912024
+      \endverb
+      \verb{url}
+      \verb https://academic.oup.com/rfs/article/34/6/2689/5912024
+      \endverb
+    \endentry
+    \entry{m_prediction_2020}{article}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=4ed90a354294f294f5f9d0f37915b0a8}{%
+           family={M.},
+           familyi={M\bibinitperiod},
+           given={Poongodi},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=838a714c84b5508c1ab2fe22e25e220a}{%
+           family={Sharma},
+           familyi={S\bibinitperiod},
+           given={Ashutosh},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3ed23d3a2775d96f05a1d031cae382f7}{%
+           family={V.},
+           familyi={V\bibinitperiod},
+           given={Vijayakumar},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cf7793664df36596759481038974b7b4}{%
+           family={Bhardwaj},
+           familyi={B\bibinitperiod},
+           given={Vaibhav},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f0aa018b41389e891bce210180204c2b}{%
+           family={Sharma},
+           familyi={S\bibinitperiod},
+           given={Abhinav\bibnamedelima Parkash},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5b9d7222f06f75e91d7082de865e591}{%
+           family={Iqbal},
+           familyi={I\bibinitperiod},
+           given={Razi},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ae1ce0993102cca66d9c4a7dd55fa002}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Rajiv},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b6cf800ce2ac7b66279fc5c2a7929a61}
+      \strng{fullhash}{50cee266f224162bd0dbd4461c1f2891}
+      \strng{fullhashraw}{50cee266f224162bd0dbd4461c1f2891}
+      \strng{bibnamehash}{b6cf800ce2ac7b66279fc5c2a7929a61}
+      \strng{authorbibnamehash}{b6cf800ce2ac7b66279fc5c2a7929a61}
+      \strng{authornamehash}{b6cf800ce2ac7b66279fc5c2a7929a61}
+      \strng{authorfullhash}{50cee266f224162bd0dbd4461c1f2891}
+      \strng{authorfullhashraw}{50cee266f224162bd0dbd4461c1f2891}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Cryptocurrency has gained considerable popularity in the past decade. The untraceable and uncontrolled nature of cryptocurrency attracts millions of people around the world. Research in cryptocurrency is dedicated to finding the ether and predicting its price according to the cryptocurrency's past price inflations. In this study, price prediction is performed with two machine learning methods, namely linear regression (LR) and support vector machine (SVM), by using a time series consisting of daily ether cryptocurrency closing prices. Different window lengths are used in ether cryptocurrency price prediction by using filters with different weight coefficients. In the training phase, a cross-validation method is used to construct a high-performance model independent of the data set. The proposed model is implemented using two machine learning techniques. When using the proposed model, the SVM method has a higher accuracy (96.06\%) than the LR method (85.46\%). Furthermore, the accuracy score of the proposed model can be increased up to 99\% by adding features to the SVM method.}
+      \field{issn}{0045-7906}
+      \field{journaltitle}{Computers \& Electrical Engineering}
+      \field{month}{1}
+      \field{title}{Prediction of the price of {Ethereum} blockchain cryptocurrency in an industrial finance system}
+      \field{urlday}{31}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{81}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{106527}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.compeleceng.2019.106527
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Full Text PDF:C\:\\Users\\DanYu\\Zotero\\storage\\HLRT692R\\M. et al. - 2020 - Prediction of the price of Ethereum blockchain cryptocurrency in an industrial finance system.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045790618331343
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0045790618331343
+      \endverb
+      \keyw{Cryptocurrency,Ether,Industrial finance system,Linear regression,SVM}
+    \endentry
+    \entry{post_empirical_2003}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=26e0948a4955bc30cd860ce7aae797f8}{%
+           family={Post},
+           familyi={P\bibinitperiod},
+           given={Thierry},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{fullhash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{fullhashraw}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{bibnamehash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{authorbibnamehash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{authornamehash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{authorfullhash}{26e0948a4955bc30cd860ce7aae797f8}
+      \strng{authorfullhashraw}{26e0948a4955bc30cd860ce7aae797f8}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We derive empirical tests for the stochastic dominance efficiencyof a given portfoliowith respect to all possible portfolios constructed from a set of assets. The tests can be computedusing straightforwardlinear programming. Bootstrapping techniques and asymptotic distribution theory can approximatethe samplingpropertiesof the test results and allow forstatistical inference. Our results could provide a stimulus to the further proliferation of stochastic dominancefor the problemof portfolio selection and evaluation. Using our tests, the Famaand Frenchmarketportfolio is significantly inefficient relative to benchmarkportfolios formedon market capitalization and book-to-marketequity ratio.}
+      \field{issn}{0022-1082, 1540-6261}
+      \field{journaltitle}{The Journal of Finance}
+      \field{month}{10}
+      \field{number}{5}
+      \field{title}{Empirical {Tests} for {Stochastic} {Dominance} {Efficiency}}
+      \field{urlday}{29}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{58}
+      \field{year}{2003}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{1905\bibrangedash 1931}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1111/1540-6261.00592
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\choui\\Zotero\\storage\\3556SVG3\\Post - 2003 - Empirical Tests for Stochastic Dominance Efficiency.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/10.1111/1540-6261.00592
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/10.1111/1540-6261.00592
+      \endverb
+    \endentry
+    \entry{wang_factor_2021}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d21eb29df2d202999dfb061831b4794c}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qiyu},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e991ec0d4cc44ca52e117ff0a23821e}{%
+           family={Chong},
+           familyi={C\bibinitperiod},
+           given={Terence\bibnamedelima Tai-Leung},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinithyphendelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{fullhash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{fullhashraw}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{bibnamehash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{authorbibnamehash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{authornamehash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{authorfullhash}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \strng{authorfullhashraw}{c3ccd875f3c6c9279d868f16f1b4c4ec}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper, we study the cryptocurrency pricing factors. We review the literatures which state that the cryptocurrency market is weakly efficient. We use the Fama–MacBeth method to investigate the pricing factors. The classical equity-based risk factors including size, momentum, and value to growth from the Fama–French three factor model are studied. We use crypto-unique coin-to-token as a proxy for value-to-growth. For volatility risk factor category, we investigate realized volatility, skewness and jump. We also investigate liquidity factors including bid–ask, volume growth and Roll’s measure. The macro factors are found not to be an explanatory factor. The attention factor works sometimes. The factor model constructed by the significant factors explain most of the excess return of cryptocurrencies.}
+      \field{issn}{1062-9408}
+      \field{journaltitle}{The North American Journal of Economics and Finance}
+      \field{month}{7}
+      \field{title}{Factor pricing of cryptocurrencies}
+      \field{urlday}{31}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{57}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{101348}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.najef.2020.101348
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Full Text PDF:C\:\\Users\\DanYu\\Zotero\\storage\\WSCUWKYE\\Wang and Chong - 2021 - Factor pricing of cryptocurrencies.pdf:application/pdf;ScienceDirect Snapshot:C\:\\Users\\DanYu\\Zotero\\storage\\R8JLJXNS\\S1062940820302308.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1062940820302308
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1062940820302308
+      \endverb
+      \keyw{Cross-section,Cryptocurrency,Fama–MacBeth method,Pricing factors,Robustness test}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
